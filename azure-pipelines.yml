@@ -25,10 +25,6 @@ steps:
   displayName: 'Install dependencies'
 
 steps:
-- script: 'python setup.py sdist'
-  displayName: 'Build sdist'
-
-steps:
 - task: PublishBuildArtifacts@1
   displayName: 'Publish Artifact: dist'
   inputs:
