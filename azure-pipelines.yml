@@ -18,6 +18,8 @@ stages:
     steps: 
       - bash: touch isthisfilehere.txt 
         displayName: 'Touch file'
+      - bash: ls 
+        displayName: 'listing directory'
   - job: Job1_2
     displayName: "Checking file"
     steps: 
