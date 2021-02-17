@@ -8,28 +8,27 @@ trigger:
 
 pool:
   vmImage: ubuntu-18.04
-strategy:
-  matrix:
-    Python37:
-      python.version: '3.7'
 
-steps:
-- task: UsePythonVersion@0
-  inputs:
-    versionSpec: '$(python.version)'
-  displayName: 'Use Python $(python.version)'
-
-- script: |
-    python -m pip install --upgrade pip
-    pip install -r requirements.txt
-  displayName: 'Install dependencies'
-
-- script: 'python setup.py sdist'
-  displayName: 'Build sdist'
-- task: PublishBuildArtifacts@1
-  displayName: 'Publish Artifact: dist'
-  inputs:
-    PathtoPublish: dist
-    ArtifactName: dist
-
+stages: 
+- stage: Test1
+  displayName: "First stage"
+  jobs: 
+  - job: Job1_1
+    displayName: "Adding file"
+    steps: 
+      - bash: touch isthisfilehere.txt 
+        displayName: 'Touch file'
+  - job: Job1_2
+    displayName: "Checking file"
+    steps: 
+      - bash: ls 
+        displayName: 'listing directory'
+- stage: Test2
+  displayName: "Second stage"
+  jobs: 
+  - job: Job2
+    displayName: "Checking file"
+    steps: 
+      - bash: ls 
+        displayName: 'listing directory'
 
