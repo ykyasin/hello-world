@@ -11,7 +11,8 @@ trigger:
 
 stages: 
 - stage: Test1
-  pool: firstVM
+  pool: 
+    vmImage: ubuntu-18.04
   displayName: "First stage"
   jobs: 
   - job: Job1_1
