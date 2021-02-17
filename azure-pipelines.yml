@@ -35,6 +35,9 @@ stages:
       - download: current
         artifact: dropScripts
         displayName: "Artifact download"
+      - task: PowerShell@2
+        inputs:
+          filePath: '$(Pipeline.Workspace)\dropScripts\script20.ps1'
       - bash: ls 
         displayName: 'listing directory'
 - stage: Test2
