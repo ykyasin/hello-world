@@ -22,10 +22,14 @@ stages:
         displayName: 'Touch file'
       - bash: ls 
         displayName: 'listing directory'
+      - publish: $(System.DefaultWorkingDirectory)/bin/WebApp
+        artifact: WebApp
   - job: Job1_2
     displayName: "Checking file"
     dependsOn: Job1_1
     steps: 
+      - download: current
+        artifact: WebApp
       - bash: ls 
         displayName: 'listing directory'
 - stage: Test2
