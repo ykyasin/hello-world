@@ -20,17 +20,20 @@ stages:
         displayName: 'Touch file'
       - bash: ls 
         displayName: 'listing directory'
-      - task: PublishBuildArtifacts@1
+      - task: CopyFiles@2
+        displayName: 'Copy isthisfilehere'
         inputs:
-          PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-          ArtifactName: 'drop'
-          publishLocation: 'Container'
+          contents: 'isthisfilehere.txt'
+          targetFolder: '$(Build.StagingDirectory)'
+      - publish: '$(Build.ArtifactStagingDirectory)/isthisfilehere.txt'
+        displayName: 'Publish for later use'
+        artifact: dropScripts
   - job: Job1_2
     displayName: "Checking file"
     dependsOn: Job1_1
     steps: 
       - download: current
-        artifact: drop
+        artifact: dropScripts
         displayName: "Artifact download"
       - bash: ls 
         displayName: 'listing directory'
