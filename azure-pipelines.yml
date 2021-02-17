@@ -6,13 +6,11 @@
 trigger:
 - main
 
-#pool:
-#  vmImage: ubuntu-18.04
+pool:
+  vmImage: ubuntu-18.04
 
 stages: 
 - stage: Test1
-  pool: 
-    vmImage: ubuntu-18.04
   displayName: "First stage"
   jobs: 
   - job: Job1_1
@@ -31,6 +29,9 @@ stages:
     displayName: "Checking file"
     dependsOn: Job1_1
     steps: 
+      - download: current
+        artifact: drop
+        displayName: "Artifact download"
       - bash: ls 
         displayName: 'listing directory'
 - stage: Test2
