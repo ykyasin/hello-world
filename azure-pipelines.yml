@@ -37,7 +37,7 @@ stages:
         displayName: "Artifact download"
       - task: PowerShell@2
         inputs:
-          filePath: '$(Pipeline.Workspace)\dropScripts\script20.ps1'
+          filePath: '$(Pipeline.Workspace)\dropScripts\isthisfilehere.txt'
       - bash: ls 
         displayName: 'listing directory'
 - stage: Test2
