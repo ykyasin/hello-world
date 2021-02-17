@@ -24,6 +24,7 @@ stages:
         displayName: 'listing directory'
   - job: Job1_2
     displayName: "Checking file"
+    dependsOn: Job1_1
     steps: 
       - bash: ls 
         displayName: 'listing directory'
